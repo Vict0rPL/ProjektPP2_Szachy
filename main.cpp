@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <iostream>
+#include "ChessBoard.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 640;
@@ -42,6 +43,8 @@ void drawChessboard(SDL_Renderer* renderer) {
             SDL_RenderFillRect(renderer, &rect);
         }
     }
+
+    
 }
 
 int main(int argc, char* args[]) {
@@ -55,6 +58,8 @@ int main(int argc, char* args[]) {
 
     bool quit = false;
     SDL_Event e;
+
+    ChessBoard board;
 
     while (!quit) {
         // Handle events on queue
@@ -76,6 +81,8 @@ int main(int argc, char* args[]) {
 
         // Update screen
         SDL_RenderPresent(renderer);
+
+        
     }
 
     SDL_DestroyRenderer(renderer);
