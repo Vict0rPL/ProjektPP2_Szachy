@@ -1,0 +1,4 @@
+Projekt Szach To Do: ------------------- 
+1. Pobrac plik z githuba ok 
+2. Ustalic strukture projektu
+
