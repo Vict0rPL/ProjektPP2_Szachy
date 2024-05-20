@@ -19,36 +19,15 @@
     <Filter Include="Source Files\Models">
       <UniqueIdentifier>{36a237d9-4491-4697-ad89-bf348c7ea9db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Models\Pieces">
-      <UniqueIdentifier>{9512c336-ce71-47fc-a422-0bf4b2882123}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Piece.cpp">
-      <Filter>Source Files\Models\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\Models\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="Rock.cpp">
-      <Filter>Source Files\Models\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="Knight.cpp">
-      <Filter>Source Files\Models\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="Bishop.cpp">
-      <Filter>Source Files\Models\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="BoardSquare.cpp">
+    <ClCompile Include="ChessBoard.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Queen.cpp">
-      <Filter>Source Files\Models\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="ChessBoard.cpp">
+    <ClCompile Include="Piece.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,25 +38,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BoardSquare.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Piece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Knight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bishop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Queen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ChessBoard.h">

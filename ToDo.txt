@@ -1,6 +1,21 @@
-Projekt Szach To Do: ------------------- 
+Projekt Szachy To Do: ------------------- 
 1. Pobrac plik z githuba ok 
-2. Ustalic strukture projektu
+2. Ustalic strukture projektu ok
+3. Zdefiniowac ChessBoard ok
+4. Zdefiniowac Pionki ok
+5. Dodac tekstury ok
+6. Zrenderowac Tekstury ok
+7. Obsluzyc klikniecia ok
+8. Dodac logi do debugowania ok
+9. Dodac Tury ok
+10. Zdefiniowac reszte figur i validacje ich ruchow (uproszczone) ok
+11. Dodac logike szachowania
+12. Rozbudowac walidacje ruchow
+13. Dodac kondycje wygranej (szach mat)
+14. Mozliwosc cofania ruchow
+15. dodatkowe elementy UI
+16. wyodrebnic z maina Game class
+17. zrobic z pointera board odzielna klase/ struct
 
 
 
