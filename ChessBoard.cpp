@@ -65,7 +65,7 @@ bool ChessBoard::movePiece(int startX, int startY, int endX, int endY) {
         return false;
     }
 
-    if (!piece->isValidMove(startX, startY, endX, endY)) {
+    if (!piece->isValidMove(startX, startY, endX, endY, *this)) {
         cout << "Invalid move: (" << startX << ", " << startY << ") to (" << endX << ", " << endY << ")" << endl;
         return false;
     }
@@ -82,3 +82,37 @@ bool ChessBoard::movePiece(int startX, int startY, int endX, int endY) {
     cout << "Piece moved from (" << startX << ", " << startY << ") to (" << endX << ", " << endY << ")" << endl;
     return true;
 }
+
+bool ChessBoard::isEmpty(int x, int y) const {
+    return board[y][x] == nullptr;
+}
+
+bool ChessBoard::isOpponentPiece(int x, int y, Color color) const {
+    return board[y][x] != nullptr && board[y][x]->getColor() != color;
+}
+
+bool ChessBoard::isEnPassantPossible(int x, int y, Color color) const {
+    // Logic to check if en passant is possible
+    // check if the last move was a double-step move by a pawn adjacent to the current pawn
+    // check if the current move is immediately after that move.
+    // needed saved information about the last move made and the positions of pawns that moved two steps - implement after the move memory implementation
+	return false; // for now, always return false
+}
+
+bool ChessBoard::isClearPath(int startX, int startY, int endX, int endY) const {
+    int dx = (endX - startX) == 0 ? 0 : (endX - startX) / abs(endX - startX);
+    int dy = (endY - startY) == 0 ? 0 : (endY - startY) / abs(endY - startY);
+
+    int x = startX + dx;
+    int y = startY + dy;
+
+    while (x != endX || y != endY) {
+        if (!isEmpty(x, y)) {
+            return false;
+        }
+        x += dx;
+        y += dy;
+    }
+    return true;
+}
+

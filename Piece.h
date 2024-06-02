@@ -1,76 +1,53 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+class ChessBoard; // Forward declaration
+
 enum class Color { WHITE, BLACK };
 
-// Base class for all chess pieces
 class Piece {
 public:
-    // Constructor to initialize a Piece with a specific color
-    Piece(Color color) : color(color) {}
-
-    // Virtual destructor to allow derived class destructors to be called
-    virtual ~Piece() {}
-
-    // Delete copy constructor to prevent copying of pieces
-    Piece(const Piece&) = delete;
-
-    // Delete copy assignment operator to prevent assignment of pieces
-    Piece& operator=(const Piece&) = delete;
-
-    // Default move constructor to allow moving of pieces
-    Piece(Piece&&) = default;
-
-    // Default move assignment operator to allow move assignment of pieces
-    Piece& operator=(Piece&&) = default;
-
-    // Function to get the color of the piece
-    Color getColor() const { return color; }
-
-    // Pure virtual function to validate a move; must be implemented by derived classes
-    virtual bool isValidMove(int startX, int startY, int endX, int endY) const = 0;
-
-protected:
-    // Color of the piece (WHITE or BLACK)
     Color color;
+    Piece(Color c) : color(c) {}
+    virtual ~Piece() {}
+    Color getColor() const { return color; }
+    virtual bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const = 0;
 };
-
-// All chess pieces Inherit from Piece
 
 class Pawn : public Piece {
 public:
-    Pawn(Color color) : Piece(color) {}
-    bool isValidMove(int startX, int startY, int endX, int endY) const override;
+    Pawn(Color c) : Piece(c) {}
+    bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const override;
 };
 
 class Rook : public Piece {
 public:
-    Rook(Color color) : Piece(color) {}
-    bool isValidMove(int startX, int startY, int endX, int endY) const override;
+    Rook(Color c) : Piece(c) {}
+    bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const override;
 };
 
 class Knight : public Piece {
 public:
-    Knight(Color color) : Piece(color) {}
-    bool isValidMove(int startX, int startY, int endX, int endY) const override;
+    Knight(Color c) : Piece(c) {}
+    bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const override;
 };
 
 class Bishop : public Piece {
 public:
-    Bishop(Color color) : Piece(color) {}
-    bool isValidMove(int startX, int startY, int endX, int endY) const override;
+    Bishop(Color c) : Piece(c) {}
+    bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const override;
 };
 
 class Queen : public Piece {
 public:
-    Queen(Color color) : Piece(color) {}
-    bool isValidMove(int startX, int startY, int endX, int endY) const override;
+    Queen(Color c) : Piece(c) {}
+    bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const override;
 };
 
 class King : public Piece {
 public:
-    King(Color color) : Piece(color) {}
-    bool isValidMove(int startX, int startY, int endX, int endY) const override;
+    King(Color c) : Piece(c) {}
+    bool isValidMove(int startX, int startY, int endX, int endY, const ChessBoard& board) const override;
 };
 
 #endif // PIECE_H

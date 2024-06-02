@@ -20,4 +20,9 @@ public:
 
     void initBoard();
     bool movePiece(int startX, int startY, int endX, int endY);
+    bool isEmpty(int x, int y) const;
+    bool isOpponentPiece(int x, int y, Color color) const;
+    bool isEnPassantPossible(int x, int y, Color color) const;
+    bool isClearPath(int startX, int startY, int endX, int endY) const;
+
 };

@@ -14,7 +14,7 @@ Projekt Szachy To Do: -------------------
 13. Dodac kondycje wygranej (szach mat)
 14. Mozliwosc cofania ruchow
 15. dodatkowe elementy UI
-16. wyodrebnic z maina Game class
+16. wyodrebnic z maina Game class ok
 17. zrobic z pointera board odzielna klase/ struct
 
 
