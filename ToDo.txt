@@ -9,13 +9,14 @@ Projekt Szachy To Do: -------------------
 8. Dodac logi do debugowania ok
 9. Dodac Tury ok
 10. Zdefiniowac reszte figur i validacje ich ruchow (uproszczone) ok
-11. Dodac logike szachowania
-12. Rozbudowac walidacje ruchow
-13. Dodac kondycje wygranej (szach mat)
+11. Dodac logike szachowania ok
+12. Rozbudowac walidacje ruchow ok
+13. Dodac kondycje wygranej (szach mat) ok
 14. Mozliwosc cofania ruchow
 15. dodatkowe elementy UI
 16. wyodrebnic z maina Game class ok
-17. zrobic z pointera board odzielna klase/ struct
+17. zrobic z pointera board odzielna klase/ struct ok
+18. powiekszyc wybrana figure ok
 
 
 

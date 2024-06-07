@@ -102,9 +102,10 @@ void drawChessboard(SDL_Renderer* renderer, int screenWidth, int screenHeight, i
 }
 
 // Function to draw the chess pieces
+// Game.cpp
 void drawPieces(SDL_Renderer* renderer, const ChessBoard& board, int squareSize) {
-    for (int y = 0; y < 8; y++) {
-        for (int x = 0; x < 8; x++) {
+    for (int y = 0; y < 8; ++y) {
+        for (int x = 0; x < 8; ++x) {
             if (board.board[y][x]) {
                 SDL_Texture* texture = nullptr;
                 Color color = board.board[y][x]->getColor();
@@ -128,13 +129,28 @@ void drawPieces(SDL_Renderer* renderer, const ChessBoard& board, int squareSize)
                 }
 
                 if (texture) {
-                    SDL_Rect rect = { x * squareSize, y * squareSize, squareSize, squareSize };
+                    SDL_Rect rect;
+                    if (board.pieceSelected && board.selectedX == x && board.selectedY == y) {
+                        // Scale up the selected piece
+                        float scaleFactor = 1.5f;
+                        int newSize = static_cast<int>(squareSize * scaleFactor);
+                        int offset = (newSize - squareSize) / 2;
+                        rect = { x * squareSize - offset,
+                                 y * squareSize - offset,
+                                 newSize, newSize };
+                    }
+                    else {
+                        // Normal size for other pieces
+                        rect = { x * squareSize, y * squareSize, squareSize, squareSize };
+                    }
                     SDL_RenderCopy(renderer, texture, nullptr, &rect);
                 }
             }
         }
     }
 }
+
+
 
 // Helper function to get board coordinates from mouse position
 bool getBoardCoordinates(int mouseX, int mouseY, int& boardX, int& boardY, int screenWidth, int screenHeight, int squareSize) {
@@ -160,12 +176,16 @@ void handleMouseClick(SDL_Event& e, ChessBoard& board, bool& pieceSelected, int&
                         pieceSelected = true;
                         selectedX = boardX;
                         selectedY = boardY;
+                        board.pieceSelected = true;
+                        board.selectedX = boardX;
+                        board.selectedY = boardY;
                         cout << "Piece selected at (" << boardX << ", " << boardY << ")" << endl;
                     }
                 }
                 else {
                     if (board.movePiece(selectedX, selectedY, boardX, boardY)) {
                         pieceSelected = false;
+                        board.pieceSelected = false;
                         cout << "Piece moved" << endl;
                         currentTurn = (currentTurn == Color::WHITE) ? Color::BLACK : Color::WHITE; // Switch turns
                         cout << "Current turn: " << (currentTurn == Color::WHITE ? "White" : "Black") << endl;
@@ -174,8 +194,11 @@ void handleMouseClick(SDL_Event& e, ChessBoard& board, bool& pieceSelected, int&
             }
             else if (e.button.button == SDL_BUTTON_RIGHT) {
                 pieceSelected = false;
+                board.pieceSelected = false;
                 cout << "Piece deselected" << endl;
             }
         }
     }
 }
+
+
