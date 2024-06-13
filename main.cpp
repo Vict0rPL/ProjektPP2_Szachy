@@ -45,13 +45,23 @@ int main(int argc, char* args[]) {
     cout << "Current turn: White" << endl;
 
     while (!quit) {
-        // Handle events on queue
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
-            else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
-                quit = true;
+            else if (e.type == SDL_KEYDOWN) {
+                switch (e.key.keysym.sym) {
+                case SDLK_ESCAPE:
+                    quit = true;
+                    break;
+                case SDLK_LEFT: // Press 'left arrow' to undo
+                    board.undoMove();
+                    break;
+                case SDLK_RIGHT: // Press 'right arrow' to redo
+                    board.redoMove();
+                    break;
+                    
+                }
             }
             else {
                 handleMouseClick(e, board, pieceSelected, selectedX, selectedY, currentTurn, SCREEN_WIDTH, SCREEN_HEIGHT, SQUARE_SIZE);

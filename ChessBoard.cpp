@@ -46,6 +46,11 @@ void ChessBoard::initBoard() {
     board[7][3] = make_unique<King>(Color::BLACK);
 }
 
+void ChessBoard::makeMove(int startX, int startY, int endX, int endY, std::unique_ptr<Piece>& capturedPiece) {
+    capturedPiece = std::move(board[endY][endX]);
+    board[endY][endX] = std::move(board[startY][startX]);
+    board[startY][startX] = nullptr;
+}
 
 // Move a piece from (startX, startY) to (endX, endY)
 bool ChessBoard::movePiece(int startX, int startY, int endX, int endY) {
@@ -87,8 +92,9 @@ bool ChessBoard::movePiece(int startX, int startY, int endX, int endY) {
     }
 
     // Move the piece
-    board[endY][endX] = move(piece);
-    board[startY][startX] = nullptr;
+    std::unique_ptr<Piece> capturedPiece;
+    makeMove(startX, startY, endX, endY, capturedPiece);
+    moveList.addMove(startX, startY, endX, endY, std::move(capturedPiece));
     cout << "Piece moved from (" << startX << ", " << startY << ") to (" << endX << ", " << endY << ")" << endl;
 
     // Check if the current player is still in check after the move
@@ -104,7 +110,24 @@ bool ChessBoard::movePiece(int startX, int startY, int endX, int endY) {
     return true;
 }
 
+bool ChessBoard::undoMove() {
+    MoveNode* move = moveList.undo();
+    if (move) {
+        board[move->startY][move->startX] = std::move(board[move->endY][move->endX]);
+        board[move->endY][move->endX] = std::move(move->capturedPiece);
+        return true;
+    }
+    return false;
+}
 
+bool ChessBoard::redoMove() {
+    MoveNode* move = moveList.redo();
+    if (move) {
+        makeMove(move->startX, move->startY, move->endX, move->endY, move->capturedPiece);
+        return true;
+    }
+    return false;
+}
 
 bool ChessBoard::isEmpty(int x, int y) const {
     return board[y][x] == nullptr;
